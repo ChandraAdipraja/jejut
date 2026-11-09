@@ -120,11 +120,11 @@ export const CONFIG = {
 
   messageTitle: "Message For You",
   finalMessage: [
-    "Hai jutt, kalo udah baca ini berarti bunga itu sudah sampai ya ? Aku harap kamu suka sama bunga itu, maaf juga, harusnya dihari spesial ini aku ngasih bunga itu secara langsung tidak lewat orang lain, lagipun jauh banget anjir xD",
-    "Aku nggak tahu harus mulai dari mana, jadi aku mulai dari yang paling sederhana: terima kasih.",
+    "Hai jutt, kalo udah baca ini berarti bunga itu sudah sampai ya ? uhh suka tidak ?, maaf juga, harusnya dihari spesial ini aku yang harus ngasih secara langsung, lagipun jauh banget anjir xD, suroboyo iso pindoh ko jobor to?",
+    "Terimakasih ya jut",
     "Terima kasih sudah bertahan, sudah tumbuh, dan sudah jadi diri kamu sendiri.",
-    "Semoga tahun ini penuh hal-hal kecil yang bikin kamu senyum sendiri, nyaman, dan menemukan kebahagiaan yang kamu cari.",
-    "Dan kalau hari-hari terasa berat, ingat ya ada satu orang yang selalu senang kamu ada (C).",
+    "Semoga di tahun ini kamu bisa ngepush dirimu ke hal yang positif, anuu, maaf yaw aku tadi pura-pura tidak tau kalo hari ini kamu ulang tahun xD, aku inget kok, malah kutungguin hari ini buat ngirim ini huhuuuu, Happy birthday yaa cantik.",
+    "Oh iya dan kalau hari-hari terasa berat, ingat ya ada satu orang yang selalu senang kamu ada (C).",
   ],
   messageSpeed: 30,
   messageSkip: "Percepat",
