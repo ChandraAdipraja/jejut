@@ -14,23 +14,23 @@ export const CONFIG = {
 
   splashSteps: [
     {
-      icon: "🎈",
+      image: "gif/gif-1.gif",
       text: "HAI CANTIKKU PRINCESSKU IMUTKUU LUCUKUUU",
     },
     {
-      icon: "🎁",
+      image: "gif/gif-2.gif",
       text: "BENTAR, KAMU BELUM MANDI YAAA ?",
     },
     {
-      icon: "🎂",
+      image: "gif/gif-3.gif",
       text: "TIDAK PEDULIII, MY JAWA GA MANDI PUN TETEP CANTIKK",
     },
     {
-      icon: "🎉",
+      image: "gif/gif-4.gif",
       text: "I MADE A LITTLE SURPRISE FOR U JUTT ^-^",
     },
     {
-      icon: "🤍",
+      image: "gif/gif-5.gif",
       text: "HOP U LIKE IT, MY PORORIN",
     },
   ],
@@ -39,6 +39,8 @@ export const CONFIG = {
 
   interludeLines: [
     "Hai jutt,",
+    "WKKWKWK'kamu tidak ingat hari ini hari apa kah pim?👉🏼👈🏼'",
+    "Yakali aku ngga ingat JUTTTTT xD",
     "Lol, tadinya aku mau pura pura ngambek beberapa hari sebelum hari ini",
     "Ternyata ngediemin kamu beberapa jam aja gabisa shiii >:(",
     "Ada beberapa sesi yang akan kamu lewatin",
@@ -97,7 +99,7 @@ export const CONFIG = {
   ],
 
   heroIntro: "anyway",
-  heroBirthdayTitle: "Happy Birthday For U",
+  heroBirthdayTitle: "Happy Birthday MyJut",
   heroBirthdayAgeLead: "yang ke-",
   heroAgePretend: "31",
   heroGreeting:

@@ -76,9 +76,9 @@ Kelompok config utama:
 
 ### Section 1 — Splash
 
-- 5 langkah loading, masing-masing 2 detik, lalu hold 2 detik.
+- 5 langkah loading, masing-masing 5 detik, lalu hold 5 detik.
 - Progress bar dan persentase berjalan otomatis sampai 100%.
-- Ikon/teks berganti dengan animasi fade dan progress dot.
+- Setiap langkah memakai GIF dari `public/gif/gif-1.gif` sampai `gif-5.gif`; teks berganti dengan animasi fade dan progress dot.
 - Setelah selesai, confetti burst lalu otomatis masuk Interlude lewat transisi `slideUp`.
 - Tidak ada tombol “Buka Kejutannya”; alur berjalan otomatis.
 
@@ -121,12 +121,13 @@ Kelompok config utama:
   3. Baris baru `yang ke-` diketik.
   4. Angka dua digit acak `10–99` berubah cepat seperti gacha selama ±2,6 detik; interval makin lambat, lalu settle di `31` (`heroAgePretend`).
   5. `31` ditahan tepat **3000ms**, lalu digit `3` slide ke bawah keluar dan `2` masuk dari atas, menghasilkan `21` (`CONFIG.age`).
-  6. Ucapan `heroGreeting` diketik dengan typewriter.
-  7. Setelah ucapan selesai, tombol **Lanjut** muncul dengan fade-up.
+  6. Setelah `21` tampil, 6 foto polaroid dari `public/img` jatuh menggantung dari atas dengan panjang tali, posisi, dan delay berbeda; setelah jatuh, foto berayun pelan.
+  7. Ucapan `heroGreeting` diketik dengan typewriter.
+  8. Setelah ucapan selesai, tombol **Lanjut** muncul dengan fade-up.
 - Saat gacha, `data-hero-gacha="true"`; setelah settle `31`, `data-hero-gacha="false"` dan angka memakai layout roll dua digit.
 - Angka `21` dan `31` tidak ditampilkan sebagai hasil acak sebelum settle, agar hasil akhir jelas.
 - Tidak ada tombol skip; tombol hanya aktif setelah seluruh sequence selesai.
-- Reduced motion: langsung tampil kondisi final `21`, ucapan, dan tombol tanpa gacha/animasi.
+- Reduced motion: langsung tampil kondisi final `21`, foto tergantung statis, ucapan, dan tombol tanpa gacha/animasi.
 - Teks animasi diberi `aria-hidden`; versi final disediakan untuk screen reader.
 - Tombol **Lanjut** menuju Make a Wish.
 
@@ -247,6 +248,7 @@ birthday-site/
 - [ ] Mini game 10 nyawa; hanya bisa lanjut setelah semua 8 pasangan ketemu.
 - [ ] Hero menjalankan urutan `anyway` → hapus → `Happy Birthday For U` → `yang ke-` → gacha angka → `31` ditahan 3 detik → `21` → ucapan → tombol.
 - [ ] Angka `31` lebih besar dari baris lain dan berubah ke `21` lewat slide ke bawah.
+- [ ] Setelah `21` tampil, 6 polaroid jatuh menggantung dari atas lalu berayun pelan; reduced motion menampilkannya statis.
 - [ ] Animasi tetap halus di viewport 4K; tidak ada lag saat mouse bergerak di Game, Wish, atau Finale.
 - [ ] Tombol Lanjut baru muncul setelah typewriter ucapan selesai.
 - [ ] Wish bisa dibuka, dikirim dengan Enter, tahan Shift+Enter, dan auto-next setelah kertas terbang + 3 detik.

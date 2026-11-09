@@ -11,6 +11,70 @@ const GACHA_MS = 2600;
 const GACHA_START_MS = 55;
 const GACHA_END_MS = 300;
 const GACHA_HOLD_MS = 3000;
+const HANG_DROP_MS = 1150;
+
+const HANGING_PHOTOS = [
+  {
+    src: "img/person8.jpeg",
+    left: "3%",
+    string: "16vh",
+    delay: 0,
+    sway: "4.8s",
+    tilt: "-2.5deg",
+    size: "w-20 sm:w-24",
+    visibility: "",
+  },
+  {
+    src: "img/person2.jpeg",
+    left: "19%",
+    string: "30vh",
+    delay: 120,
+    sway: "4.1s",
+    tilt: "2deg",
+    size: "w-16 sm:w-20",
+    visibility: "hidden sm:block",
+  },
+  {
+    src: "img/person3.jpeg",
+    left: "37%",
+    string: "20vh",
+    delay: 240,
+    sway: "5.2s",
+    tilt: "-1.5deg",
+    size: "w-16 sm:w-20",
+    visibility: "hidden md:block",
+  },
+  {
+    src: "img/person4.jpeg",
+    right: "37%",
+    string: "9vh",
+    delay: 360,
+    sway: "4.6s",
+    tilt: "2.5deg",
+    size: "w-16 sm:w-20",
+    visibility: "hidden md:block",
+  },
+  {
+    src: "img/person5.jpeg",
+    right: "19%",
+    string: "27vh",
+    delay: 160,
+    sway: "4.3s",
+    tilt: "-2deg",
+    size: "w-16 sm:w-20",
+    visibility: "hidden sm:block",
+  },
+  {
+    src: "img/person6.jpeg",
+    right: "3%",
+    string: "11vh",
+    delay: 420,
+    sway: "4.9s",
+    tilt: "1.5deg",
+    size: "w-20 sm:w-24",
+    visibility: "",
+  },
+];
 
 const randomGachaAge = (excluded) => {
   let value = 10 + Math.floor(Math.random() * 90);
@@ -56,6 +120,7 @@ export default function Hero({ onNext }) {
   const [age, setAge] = useState(reduced ? targetAge : "");
   const [gacha, setGacha] = useState(false);
   const [rolling, setRolling] = useState(reduced);
+  const [photosReady, setPhotosReady] = useState(reduced);
   const [greeting, setGreeting] = useState(
     reduced ? CONFIG.heroGreeting : "",
   );
@@ -120,6 +185,7 @@ export default function Hero({ onNext }) {
       setAge(targetAge);
       setGacha(false);
       setRolling(true);
+      setPhotosReady(true);
       setGreeting(CONFIG.heroGreeting);
     };
 
@@ -137,6 +203,7 @@ export default function Hero({ onNext }) {
       setAge("");
       setGacha(false);
       setRolling(false);
+      setPhotosReady(false);
       setGreeting("");
 
       await type(CONFIG.heroIntro, setIntro, INTRO_SPEED);
@@ -180,6 +247,7 @@ export default function Hero({ onNext }) {
       await wait(ROLL_MS);
       if (cancelled) return;
       setAge(targetAge);
+      setPhotosReady(true);
       await wait(440);
       if (cancelled) return;
 
@@ -210,9 +278,59 @@ export default function Hero({ onNext }) {
   const showGreeting = stage === "greeting" || stage === "cta";
   const showButton = stage === "cta";
   const ageComplete = age.length >= targetAge.length;
+  const showHangingPhotos = photosReady;
 
   return (
     <section className="section-shell py-16" data-hero-stage={stage}>
+      {showHangingPhotos ? (
+        <div
+          aria-hidden="true"
+          data-hero-hangs
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        >
+          {HANGING_PHOTOS.map((photo) => (
+            <div
+              key={photo.src}
+              data-hero-hang
+              className={`absolute top-0 opacity-60 sm:opacity-75 ${photo.size} ${photo.visibility}`}
+              style={photo.left ? { left: photo.left } : { right: photo.right }}
+            >
+              <div
+                className="animate-hang-drop will-change-transform motion-reduce:animate-none"
+                style={{ animationDelay: `${photo.delay}ms` }}
+              >
+                <div
+                  className="animate-hang-sway will-change-transform motion-reduce:animate-none"
+                  style={{
+                    animationDelay: `${photo.delay + HANG_DROP_MS}ms`,
+                    animationDuration: photo.sway,
+                    transformOrigin: "top center",
+                    "--hang-tilt": photo.tilt,
+                  }}
+                >
+                  <span className="mx-auto block h-1.5 w-1.5 rounded-full bg-peach/70 shadow-[0_0_10px_rgba(255,214,165,0.8)]" />
+                  <span
+                    className="mx-auto block w-px bg-gradient-to-b from-transparent via-cream/25 to-cream/60"
+                    style={{ height: photo.string }}
+                  />
+                  <div className="relative mx-auto w-full">
+                    <span className="absolute -top-2 left-1/2 h-3 w-8 -translate-x-1/2 rotate-2 rounded-[1px] bg-peach/50 shadow-sm" />
+                    <div className="aspect-[4/5] w-full overflow-hidden rounded-[0.4rem] border-[5px] border-b-[14px] border-cream/85 bg-cream shadow-[0_16px_30px_-16px_rgba(0,0,0,0.85)]">
+                      <img
+                        src={`${import.meta.env.BASE_URL}${photo.src}`}
+                        alt=""
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
       <div className="relative z-10 flex min-h-[24rem] w-full max-w-3xl flex-col items-center justify-center text-center sm:min-h-[27rem]">
         <div aria-hidden="true" className="w-full">
           {!showBirthday ? (
@@ -305,7 +423,7 @@ export default function Hero({ onNext }) {
           {showGreeting ? (
             <p
               data-hero-greeting={greeting || "pending"}
-              className="mx-auto mt-8 min-h-[3.5rem] max-w-md text-balance font-body text-sm leading-relaxed text-cream/70 sm:text-base"
+              className="mx-auto mt-8 min-h-[3.5rem] w-full max-w-md text-balance font-body text-sm leading-relaxed text-cream/70 sm:text-base"
             >
               {greeting}
               {typing === "greeting" ? <Cursor /> : null}

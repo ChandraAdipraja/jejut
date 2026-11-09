@@ -105,21 +105,12 @@ export default function Splash({ onDone }) {
 
           <div key={`icon-${index}`} className="animate-icon-in">
             <div className="animate-bob">
-              {step.image ? (
-                <img
-                  data-splash-icon
-                  src={`${import.meta.env.BASE_URL}${step.image}`}
-                  alt=""
-                  className="h-28 w-28 object-contain sm:h-36 sm:w-36"
-                />
-              ) : (
-                <span
-                  data-splash-icon
-                  className="text-[5.5rem] leading-none sm:text-[7rem]"
-                >
-                  {step.icon ?? "✨"}
-                </span>
-              )}
+              <img
+                data-splash-icon
+                src={`${import.meta.env.BASE_URL}${step.image}`}
+                alt=""
+                className="h-32 w-44 object-contain sm:h-40 sm:w-56"
+              />
             </div>
           </div>
         </div>
